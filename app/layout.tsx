@@ -27,6 +27,7 @@ const kufam = Kufam({
 const stackSans = Stack_Sans_Text({
   subsets: ["latin"],
   variable: "--font-stackSans",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
