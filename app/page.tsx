@@ -1,15 +1,16 @@
 import sunset from "@/public/sunset.png";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { site, home, about, services, team, products } from "@/lib/content";
 import TeamCard from "@/components/TeamCard";
 import ProductsOverview from "@/components/ProductsOverview";
+import Reveal from "@/components/Reveal";
 
 const container = "mx-auto w-full max-w-[1400px] px-5";
-const h2 = "mb-8 font-display text-3xl font-semibold md:text-4xl";
-const h3 = "mb-2 font-display text-xl font-semibold";
+const h2 = "mb-8 font-display text-3xl font-semibold md:text-4xl text-m-blue";
+const h3 = "mb-2 font-display text-xl font-semibold text-m-blue";
 
 type Band = {
   bg: string;
@@ -84,66 +85,89 @@ export default function Page() {
       </Section>
 
       <Section id="about" band={bands.about}>
-        <div className="bg-paper rounded-lg p-28">
-          <h2 className={h2}>About Us</h2>
-          <div className="space-y-4 font-body">
-            {about.body.map((p) => <p key={p}>{p}</p>)}
-          </div>
-          <div className="mt-10 flex justify-center">
+        <div className="bg-paper rounded-lg p-28 text-m-blue">
+          <Reveal>
+            <h2 className={h2}>About Us</h2>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="space-y-4 font-body">
+              {about.body}
+            </div>
+          </Reveal>
+
+          <Reveal delay={400} className="mt-10 flex justify-center">
             <Image src={sunset} alt="Sunset" width={80} height={80} />
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section id="what-we-do" band={bands.whatWeDo}>
         <div className="flex flex-col gap-8">
-          <h2 className={h2}>What We Do</h2>
+          <Reveal>
+            <h2 className={h2}>What We Do</h2>
+          </Reveal>
+
           <div className="grid gap-8 md:grid-cols-3">
-            {services.map((s) => (
-              <article key={s.title} className="flex flex-col gap-4">
-                <Image
-                  src={s.image}
-                  alt={s.title}
-                  width={80}
-                  height={80}
-                  className="mx-auto mb-4"
-                />
-                <h3 className={h3}>{s.title}</h3>
-                <p className="text-muted">{s.text}</p>
-              </article>
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={150 + i * 150}>
+                <article key={s.title} className="flex flex-col gap-4">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    width={90}
+                    height={90}
+                    className="mx-auto mb-4"
+                  />
+                  <h3 className={h3}>{s.title}</h3>
+                  <p className="text-muted">{s.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
-
       <Section id="who-we-are" band={bands.whoWeAre}>
-        <div className="flex flex-col gap-8">
-          <h2 className={`${h2} text-center`}>Who We Are</h2>
+        <div className="flex flex-col gap-4">
+          <Reveal>
+            <h2 className={`${h2} text-center`}>Who We Are</h2>
+          </Reveal>
           <div className="grid gap-12 md:grid-cols-2">
-            {team.map((m) => (
-              <TeamCard key={m.name} {...m} />
+            {team.map((m, i) => (
+              <Reveal key={m.name} delay={150 + i * 150}>
+                <TeamCard key={m.name} {...m} />
+              </Reveal>
             ))}
           </div>
         </div>
       </Section>
 
       <Section id="products" band={bands.products}>
-        <h2 className={h2}>Products We Offer</h2>
-        <p className="font-body pb-8">{products.description}</p>
+        <Reveal>
+          <h2 className={h2}>Products We Offer</h2>
+          <p className="font-body pb-8">{products.description}</p>
+        </Reveal>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[2fr_1fr]">
-          <div className="rounded-lg p-6">
-            <ProductsOverview />
-          </div>
-          <div className="flex flex-col gap-4 items-center justify-center">
-            {products.pages.map((p) => (
-              <Link
-                key={p.name}
-                href={p.link}
-                className="flex items-center px-3 py-1.5 rounded-md bg-m-blue w-64 md:w-72 justify-between hover:opacity-70">
-                <p className="text-m-cream">{p.name}</p>
-                <ExternalLink className="text-m-yellow ml-2" size={18} />
-              </Link>
+          <Reveal>
+
+            <div className="rounded-lg p-6">
+              <ProductsOverview />
+            </div>
+          </Reveal>
+          <div className="flex flex-col gap-6 items-center justify-center">
+            {products.pages.map((p, i) => (
+              <Reveal key={p.name} delay={150 + i * 150}>
+                <Link
+                  key={p.name}
+                  href={p.link}
+                  className="flex pl-3 pr-1.5 py-1.5 rounded-md bg-m-blue w-64 md:w-72 justify-between shadow-md transition-transform duration-150 ease-out hover:translate-y-0.5">
+                  <p className="text-m-silver">{p.name}</p>
+                  <div className="">
+                  <ArrowUpRight className="text-m-yellow ml-2" size={20} />
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>

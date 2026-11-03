@@ -22,7 +22,7 @@ export default function TeamCard({ name, bio, email, photo, gradient }: TeamMemb
         />
       </div>
 
-      <div className="flex flex-1 flex-col bg-white px-8 pb-6 pt-10">
+      <div className="flex flex-col bg-white px-8 pb-6 pt-10 h-120">
         <h3 className="mb-3 font-display text-2xl font-semibold">{name}</h3>
         <p className="text-justify">{bio}</p>
 
