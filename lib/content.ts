@@ -25,7 +25,7 @@ export const about = {
 };
 
 export const services = [
-  { title: "General Trading", image: "GeneralTrading.svg", text: "Describe the first thing you do, in plain language and one or two sentences." },
+  { title: "General Trading", image: "GeneralTrading.svg", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
   { title: "Supplier", image: "Supplier.svg", text: "We supply chemical products locally and internationally." },
   { title: "Consulting", image: "Consulting.svg", text: "Environmental Impact Assessment (EIA) (Amdal), Group Coaching and One-on-one Coaching." },
 ];
